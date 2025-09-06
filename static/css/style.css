@@ -1,0 +1,249 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.quiz-container {
+    padding: 40px;
+}
+
+.quiz-card {
+    text-align: center;
+}
+
+.question-section h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 40px;
+    line-height: 1.6;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer-section {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.answer-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    border: none;
+    border-radius: 15px;
+    padding: 30px 40px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+}
+
+.answer-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(255, 107, 107, 0.4);
+}
+
+.answer-btn:active {
+    transform: translateY(-2px);
+}
+
+#falseBtn {
+    background: linear-gradient(135deg, #4834d4 0%, #686de0 100%);
+    box-shadow: 0 10px 20px rgba(72, 52, 212, 0.3);
+}
+
+#falseBtn:hover {
+    box-shadow: 0 15px 30px rgba(72, 52, 212, 0.4);
+}
+
+.btn-text {
+    font-size: 3rem;
+    font-weight: 900;
+}
+
+.btn-label {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.result-section {
+    margin-top: 30px;
+}
+
+.result-message {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.result-message.correct {
+    color: #27ae60;
+    background: #d5f4e6;
+}
+
+.result-message.incorrect {
+    color: #e74c3c;
+    background: #fadbd8;
+}
+
+.explanation {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    line-height: 1.6;
+}
+
+.next-btn {
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.next-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 184, 148, 0.3);
+}
+
+.stats-section {
+    display: flex;
+    justify-content: space-around;
+    background: #f8f9fa;
+    padding: 30px;
+    border-top: 1px solid #e9ecef;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 30px;
+    background: #f8f9fa;
+}
+
+.control-btn {
+    background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 15px 30px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(108, 92, 231, 0.3);
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        border-radius: 15px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .question-section h2 {
+        font-size: 1.4rem;
+        min-height: 80px;
+    }
+    
+    .answer-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .answer-btn {
+        min-width: 200px;
+        padding: 25px 30px;
+    }
+    
+    .stats-section {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .controls {
+        flex-direction: column;
+    }
+}

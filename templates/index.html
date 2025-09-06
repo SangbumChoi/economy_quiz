@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>경제 퀴즈</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>경제 지식 퀴즈</h1>
+            <p>O/X 문제로 경제 지식을 테스트해보세요!</p>
+        </header>
+
+        <div class="quiz-container" id="quizContainer">
+            <div class="quiz-card" id="quizCard">
+                <div class="question-section">
+                    <h2 id="questionText">퀴즈를 불러오는 중...</h2>
+                </div>
+                
+                <div class="answer-section">
+                    <button class="answer-btn" id="trueBtn" onclick="selectAnswer(true)">
+                        <span class="btn-text">O</span>
+                        <span class="btn-label">맞습니다</span>
+                    </button>
+                    <button class="answer-btn" id="falseBtn" onclick="selectAnswer(false)">
+                        <span class="btn-text">X</span>
+                        <span class="btn-label">틀렸습니다</span>
+                    </button>
+                </div>
+
+                <div class="result-section" id="resultSection" style="display: none;">
+                    <div class="result-message" id="resultMessage"></div>
+                    <div class="explanation" id="explanation"></div>
+                    <button class="next-btn" id="nextBtn" onclick="loadNextQuiz()">다음 문제</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div class="stat-item">
+                <span class="stat-label">정답</span>
+                <span class="stat-value" id="correctCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">오답</span>
+                <span class="stat-value" id="incorrectCount">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">정답률</span>
+                <span class="stat-value" id="accuracy">0%</span>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="control-btn" onclick="loadRandomQuiz()">새 문제</button>
+            <button class="control-btn" onclick="resetStats()">통계 초기화</button>
+        </div>
+    </div>
+
+    <script src="/static/js/app.js"></script>
+</body>
+</html>
