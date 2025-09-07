@@ -6,13 +6,34 @@ from database import get_db, Quiz, create_tables
 from pydantic import BaseModel
 from typing import List, Optional
 import random
+import time
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI(title="경제 퀴즈 API", version="1.0.0")
 
-# Create tables on startup
+# Create tables on startup with retry logic
 @app.on_event("startup")
 def startup_event():
-    create_tables()
+    max_retries = 30
+    retry_delay = 2
+    
+    for attempt in range(max_retries):
+        try:
+            logger.info(f"데이터베이스 연결 시도 {attempt + 1}/{max_retries}")
+            create_tables()
+            logger.info("데이터베이스 테이블 생성 완료")
+            break
+        except Exception as e:
+            logger.warning(f"데이터베이스 연결 실패 (시도 {attempt + 1}): {e}")
+            if attempt < max_retries - 1:
+                time.sleep(retry_delay)
+            else:
+                logger.error("데이터베이스 연결에 실패했습니다. 서버를 계속 실행합니다.")
+                # Don't fail the startup, let the app run and handle DB errors gracefully
 
 # Pydantic models
 class QuizResponse(BaseModel):

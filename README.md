@@ -52,7 +52,12 @@ economy_quiz/
    docker-compose up --build
    ```
 
-3. **브라우저에서 접속**
+3. **샘플 데이터 추가 (선택사항)**
+   ```bash
+   python add_sample_data.py
+   ```
+
+4. **브라우저에서 접속**
    - 로컬: http://localhost:8000
    - 외부 접속: http://[서버IP]:8000
 
@@ -167,10 +172,35 @@ docker-compose down -v
 
 ## 🔍 문제 해결
 
+### Docker Compose 실행 오류
+```bash
+# 기존 컨테이너와 볼륨 정리
+docker-compose down -v
+docker system prune -f
+
+# 다시 실행
+docker-compose up --build
+```
+
 ### MySQL 연결 오류
 - MySQL 서버가 실행 중인지 확인
 - 데이터베이스와 사용자가 생성되었는지 확인
 - 방화벽 설정 확인
+- Docker Compose에서 health check가 완료될 때까지 대기
+
+### API 서버 시작 실패
+- MySQL 컨테이너가 완전히 준비될 때까지 대기 (약 30-60초)
+- 로그에서 "데이터베이스 테이블 생성 완료" 메시지 확인
+- 재시도 로직이 포함되어 있어 자동으로 복구됩니다
+
+### 샘플 데이터 추가 실패
+```bash
+# API 서버 상태 확인
+curl http://localhost:8000/api/categories
+
+# 수동으로 샘플 데이터 추가
+python add_sample_data.py
+```
 
 ### 포트 충돌
 - 8000번 포트가 사용 중인 경우 `config.py`에서 `API_PORT` 변경

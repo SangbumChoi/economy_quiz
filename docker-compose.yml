@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mysql:
     image: mysql:8.0
@@ -16,6 +14,12 @@ services:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "quiz_user", "-pquiz_password"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+      start_period: 30s
 
   api:
     build: .
@@ -31,7 +35,8 @@ services:
       API_HOST: 0.0.0.0
       API_PORT: 8000
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
     restart: unless-stopped
     volumes:
       - .:/app
